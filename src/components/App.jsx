@@ -16,7 +16,7 @@ import Loader from '../components/Loader/Loader';
 
 import { refreshUser } from '../redux/auth/authOperations';
 
-// Import Pages---------------------------------------------------------------------------------------------------
+// Import Pages----------------------------------------------------------------------------------------------------
 
 const Home = lazy(() => import('../pages/Home'));
 const Login = lazy(() => import('../pages/Login'));
