@@ -113,8 +113,7 @@ const Home = () => {
           fontFamily="Arial"
           color="#ffffff"
           maxWidth="480px"
-          marginLeft="auto"
-          marginRight="auto"
+          margin="auto"
         >
           PhoneBook
         </Typography>
@@ -124,7 +123,7 @@ const Home = () => {
           aria-label="Start"
           size="large"
           color="secondary"
-          marginLeft="24px"
+          margin="auto"
           endIcon={<LoginIcon />}
           onClick={handleStart}
         >

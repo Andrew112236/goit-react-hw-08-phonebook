@@ -17,10 +17,8 @@ import { useNavigate } from 'react-router-dom';
 // Import MUI Files-----------------------------------------------------------------------------------------------
 
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import BlockIcon from '@mui/icons-material/Block';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -29,7 +27,7 @@ import TextField from '@mui/material/TextField';
 
 // Function RegisterForm------------------------------------------------------------------------------------------
 
-export function RegisterForm() {
+function RegisterForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const authOperation = useSelector(selectIsAuthLoading);
@@ -67,18 +65,17 @@ export function RegisterForm() {
           alignItems: 'center',
         }}
       >
-        <Avatar sx={{ m: 1, variant: 'circular' }}>
-          <BlockIcon />
-        </Avatar>
-        <Typography component="h1" variant="h4" fontFamily="Arial"></Typography>
+        <Typography component="h1" variant="h4" fontFamily="Arial">
+          Register - Insert your credentials
+        </Typography>
         <Box
           component="form"
           autoComplete="off"
           onSubmit={handleSubmit}
           sx={{ mt: 2 }}
         >
-          <Grid container spacing={4}>
-            <Grid item xs={14}>
+          <Grid container spacing={6}>
+            <Grid item xs={20}>
               <TextField
                 name="name"
                 required
@@ -128,3 +125,5 @@ export function RegisterForm() {
     </Container>
   );
 }
+
+export default RegisterForm;

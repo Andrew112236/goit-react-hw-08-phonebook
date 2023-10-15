@@ -1,11 +1,13 @@
-import { RegisterForm } from 'components/RegisterForm/RegisterForm';
+import RegisterForm from '../components/RegisterForm/RegisterForm';
 import DocumentTitle from 'react-document-title';
 
 const Register = () => {
-  <>
-    <DocumentTitle title="Registration"></DocumentTitle>
-    <RegisterForm />
-  </>;
+  return (
+    <div>
+      <DocumentTitle title="Login"></DocumentTitle>
+      <RegisterForm />
+    </div>
+  );
 };
 
 export default Register;

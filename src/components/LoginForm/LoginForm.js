@@ -9,23 +9,23 @@ import Loader from '../Loader/Loader';
 // Import Redux files---------------------------------------------------------------------------------------------
 
 import { logIn } from '../../redux/auth/authOperations';
-import { selectIsAuthLoading } from 'redux/auth/authSelectors';
+import { selectIsAuthLoading } from '../../redux/auth/authSelectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 // Import MUI Files-----------------------------------------------------------------------------------------------
 
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import BlockIcon from '@mui/icons-material/Block';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 // Function LoginForm------------------------------------------------------------------------------------------
 
@@ -68,11 +68,8 @@ function LoginForm() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, variant: 'circular' }}>
-            <BlockIcon />
-          </Avatar>
           <Typography component="h1" variant="h4" sx={{ fontFamily: 'Arial' }}>
-            Login
+            Login - Insert your credentials
           </Typography>
           <Box
             component="form"
@@ -80,15 +77,15 @@ function LoginForm() {
             onSubmit={handleSubmit}
             sx={{ mt: 2 }}
           >
-            <Grid container spacing={4}>
-              <Grid item xs={14}>
+            <Grid container spacing={6}>
+              <Grid item xs={20}>
                 <TextField
                   name="name"
                   required
                   fullWidth
                   id="name"
                   label="Name"
-                  autoFocus
+                  autoComplete="email"
                 />
               </Grid>
               <Grid item xs={14}>
@@ -110,10 +107,15 @@ function LoginForm() {
                   type="password"
                   id="password"
                 />
+
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
               </Grid>
             </Grid>
             <Button type="submit" fullWidth variant="contained">
-              {authOperation === 'login' ? <Loader /> : <>Sign In</>}
+              {authOperation === 'logIn' ? <Loader /> : <>Sign In</>}
             </Button>
             <Grid container>
               <Grid item xs>
@@ -127,7 +129,7 @@ function LoginForm() {
                   variant="body2"
                   onClick={() => navigate('/register')}
                 >
-                  {"Don't have an account? Sign Up"}
+                  {"Don't have a free account yet? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
