@@ -1,6 +1,5 @@
-import { login, logout, refresh, register } from './authOperations';
-
-const { createSlice } = require('@reduxjs/toolkit');
+import { createSlice, combineReducers } from '@reduxjs/toolkit';
+import { logIn, logOut, refreshUser, register } from './authOperations';
 
 const createAuthentificationSlice = operation => ({
   pending: state => {
@@ -19,46 +18,94 @@ const createAuthentificationSlice = operation => ({
   },
 });
 
-// Initial state--------------------------------------------------------------------------------------------------------------------
+//Pending, fullfilled,rejected - REGISTER section------------------------------------------------------------------------------
 
-const initialState = {
-  user: { name: null, email: null },
-  token: null,
-  isLoggedIn: false,
-  isRefreshing: false,
-
-  isAuthLoading: false,
-  authError: null,
-};
-
-const authSlice = createSlice({
-  name: 'authentificator',
-  initialState,
+const registerSlice = createSlice({
+  name: 'register',
+  initialState: {
+    user: { name: null, email: null },
+    token: null,
+    isLoggedIn: false,
+    isRefreshing: false,
+    isAuthLoading: false,
+    authError: null,
+  },
+  reducers: {},
   extraReducers: builder => {
     builder
-      //Pending, fullfilled,rejected - REGISTER section------------------------------------------------------------------------------
-
       .addCase(register.pending, createAuthentificationSlice('register'))
       .addCase(register.fulfilled, createAuthentificationSlice('register'))
-      .addCase(register.rejected, createAuthentificationSlice('register'))
-
-      //Pending, fullfilled,rejected - LOGIN section------------------------------------------------------------------------------
-
-      .addCase(login.pending, createAuthentificationSlice('login'))
-      .addCase(login.fulfilled, createAuthentificationSlice('login'))
-      .addCase(login.rejected, createAuthentificationSlice('login'))
-
-      //Pending, fullfilled,rejected - LOGOUT section------------------------------------------------------------------------------
-
-      .addCase(logout.pending, createAuthentificationSlice('logout'))
-      .addCase(logout.fulfilled, createAuthentificationSlice('logout'))
-
-      //Pending, fullfilled,rejected - REFRESH section------------------------------------------------------------------------------
-
-      .addCase(refresh.pending, createAuthentificationSlice('refresh'))
-      .addCase(refresh.fulfilled, createAuthentificationSlice('refresh'))
-      .addCase(refresh.rejected, createAuthentificationSlice('refresh'));
+      .addCase(register.rejected, createAuthentificationSlice('register'));
   },
 });
 
-export const authSliceReducer = authSlice.reducer;
+//Pending, fullfilled,rejected - LOGIN section------------------------------------------------------------------------------
+
+const logInSlice = createSlice({
+  name: 'login',
+  initialState: {
+    user: { name: null, email: null },
+    token: null,
+    isLoggedIn: false,
+    isRefreshing: false,
+    isAuthLoading: false,
+    authError: null,
+  },
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(logIn.pending, createAuthentificationSlice('login'))
+      .addCase(logIn.fulfilled, createAuthentificationSlice('login'))
+      .addCase(logIn.rejected, createAuthentificationSlice('login'));
+  },
+});
+
+//Pending, fullfilled,rejected - LOGOUT section------------------------------------------------------------------------------
+
+const logOutSlice = createSlice({
+  name: 'logout',
+  initialState: {
+    user: { name: null, email: null },
+    token: null,
+    isLoggedIn: false,
+    isRefreshing: false,
+    isAuthLoading: false,
+    authError: null,
+  },
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(logOut.pending, createAuthentificationSlice('logout'))
+      .addCase(logOut.fulfilled, createAuthentificationSlice('logout'));
+  },
+});
+
+//Pending, fullfilled,rejected - REFRESH section------------------------------------------------------------------------------
+
+const refreshUserSlice = createSlice({
+  name: 'refresh',
+  initialState: {
+    user: { name: null, email: null },
+    token: null,
+    isLoggedIn: false,
+    isRefreshing: false,
+    isAuthLoading: false,
+    authError: null,
+  },
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(refreshUser.pending, createAuthentificationSlice('refresh'))
+      .addCase(refreshUser.fulfilled, createAuthentificationSlice('refresh'))
+      .addCase(refreshUser.rejected, createAuthentificationSlice('refresh'));
+  },
+});
+
+const rootReducer = combineReducers({
+  register: registerSlice.reducer,
+  login: logInSlice.reducer,
+  logout: logOutSlice.reducer,
+  refresh: refreshUserSlice.reducer,
+});
+
+export const authSliceReducer = rootReducer;

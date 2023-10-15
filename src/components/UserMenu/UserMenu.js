@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Import Files from components-----------------------------------------------------------------------------------
 
-import { Loader } from '../Loader/Loader';
+import Loader from '../Loader/Loader';
 
 // Import Redux files---------------------------------------------------------------------------------------------
 
 import { useAuth } from 'hooks';
-import { logout } from 'redux/auth/authOperations';
+import { logOut } from 'redux/auth/authOperations';
 import { selectIsAuthLoading } from 'redux/auth/authSelectors';
 
 // Import MUI Files-----------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ export const UserMenu = () => {
         size="large"
         color="primary"
         type="button"
-        onClick={() => dispatch(logout())}
+        onClick={() => dispatch(logOut())}
         endIcon={authentOperation === 'logout' ? <Loader /> : <LogoutIcon />}
       >
         Logout

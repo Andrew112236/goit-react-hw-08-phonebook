@@ -5,8 +5,8 @@ import React from 'react';
 // Import Files from components-----------------------------------------------------------------------------------
 
 import { UserMenu } from 'components/UserMenu/UserMenu';
-import { AuthNav } from 'components/AuthNav';
-import { Navigation } from 'components/Navigation';
+import AuthNav from 'components/AuthNav/AuthNav';
+import { Navigation } from 'components/Navigation/Navigation';
 
 // Import MUI Files-----------------------------------------------------------------------------------------------
 

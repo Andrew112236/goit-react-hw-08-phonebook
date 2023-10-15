@@ -5,7 +5,7 @@ import { Notify } from 'notiflix';
 
 // Import Files from components-----------------------------------------------------------------------------------
 
-import { Loader } from '../Loader/Loader';
+import Loader from '../Loader/Loader';
 
 // Import Redux files---------------------------------------------------------------------------------------------
 

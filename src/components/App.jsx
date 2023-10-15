@@ -1,7 +1,7 @@
 // Import utils---------------------------------------------------------------------------------------------------
 
 import { Route, Routes } from 'react-router-dom';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { lazy, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
@@ -9,12 +9,12 @@ import { Navigate } from 'react-router-dom';
 // Import Files from components-----------------------------------------------------------------------------------
 
 import { useAuth } from 'hooks/useAuth';
-import Layout from '../components/Layout';
-import { Loader } from '../components/Loader';
+import Layout from '../components/Layout/Layout';
+import Loader from '../components/Loader/Loader';
 
 // Redux section--------------------------------------------------------------------------------------------------
 
-import { refresh } from '../redux/auth';
+import { refreshUser } from '../redux/auth/authOperations';
 
 // Import Pages---------------------------------------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ const Register = lazy(() => import('../pages/Register'));
 
 //Use MUI Theme styles--------------------------------------------------------------------------------------------
 
-const themeStyles = createMuiTheme({
+const themeStyles = createTheme({
   typography: {
     button: {
       fontFamility: 'Arial',
@@ -74,7 +74,7 @@ export const App = () => {
   const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch(refresh());
+    dispatch(refreshUser());
   }, [dispatch]);
 
   return (

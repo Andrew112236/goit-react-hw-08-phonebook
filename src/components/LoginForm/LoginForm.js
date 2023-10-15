@@ -5,11 +5,11 @@ import { Notify } from 'notiflix';
 
 // Import Files from components-----------------------------------------------------------------------------------
 
-import { Loader } from '../Loader/Loader';
+import Loader from '../Loader/Loader';
 
 // Import Redux files---------------------------------------------------------------------------------------------
 
-import { register } from '../../redux/auth/authSlice';
+import { logIn } from '../../redux/auth/authOperations';
 import { selectIsAuthLoading } from 'redux/auth/authSelectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +27,6 @@ import Grid from '@mui/material/Grid';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Login } from '@mui/icons-material';
 
 // Function LoginForm------------------------------------------------------------------------------------------
 
@@ -43,7 +42,7 @@ export function LoginForm() {
     const form = event.currentTarget;
     try {
       await dispatch(
-        Login({
+        logIn({
           email: form.elements.email.value,
           password: form.elements.password.value,
         })
@@ -118,13 +117,18 @@ export function LoginForm() {
               </Grid>
             </Grid>
             <Button type="submit" fullWidth variant="contained">
-              {authOperation === 'register' ? <Loader /> : <>Sign In</>}
+              {authOperation === 'login' ? <Loader /> : <>Sign In</>}
             </Button>
-            <Grid container justifyContent="center" alignItems="center">
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
               <Grid item>
                 <Link
-                  component="button"
-                  variant="button"
+                  href="#"
+                  variant="body2"
                   onClick={() => navigate('/register')}
                 >
                   {"Don't have an account? Sign Up"}
