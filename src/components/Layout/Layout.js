@@ -29,6 +29,7 @@ class Layout extends React.Component {
             alert('callback');
           });
           break;
+        default:
       }
     };
   };
@@ -37,7 +38,7 @@ class Layout extends React.Component {
     return (
       <Container maxWidth="md">
         <Bar />
-        <button onClick={this.createNotification('info')}>
+        {/* <button onClick={this.createNotification('info')}>
           Afișează notificare Info
         </button>
         <button onClick={this.createNotification('success')}>
@@ -48,7 +49,7 @@ class Layout extends React.Component {
         </button>
         <button onClick={this.createNotification('error')}>
           Afișează notificare Error
-        </button>
+        </button> */}
         <Suspense fallback={null}>
           <Outlet />
         </Suspense>

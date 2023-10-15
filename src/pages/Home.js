@@ -16,8 +16,28 @@ const MainBox = styled(Box)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 10px;
 `;
+
+function getTimeOfDay() {
+  const currentTime = new Date().getHours();
+
+  let message = '';
+  let style = {};
+
+  if (currentTime >= 0 && currentTime < 12) {
+    message = 'Good Morning!';
+    style = { color: '#0408d9' };
+  } else if (currentTime >= 12 && currentTime < 17) {
+    message = 'Good Afternoon!';
+    style = { color: '#0408d9' };
+  } else {
+    message = 'Good Evening!';
+    style = { color: '#0408d9' };
+  }
+
+  return <span style={style}>{message}</span>;
+}
 
 const theme = createTheme({
   palette: {
@@ -25,12 +45,12 @@ const theme = createTheme({
       main: '#1976d2',
     },
     secondary: {
-      main: '#d9d9dc',
+      main: '#0408d9',
     },
   },
   typography: {
     button: {
-      fontFamily: 'Ubuntu',
+      fontFamily: 'Arial',
     },
   },
   breakpoints: {
@@ -51,6 +71,7 @@ const Home = () => {
   const handleStart = () => {
     isLoggedIn ? navigate('/contacts') : navigate('/login');
   };
+
   return (
     <ThemeProvider theme={theme}>
       <DocumentTitle title="Home"></DocumentTitle>
@@ -59,22 +80,20 @@ const Home = () => {
           sx={{
             mb: 1,
             fontSize: {
-              xs: '30px',
-              sm: '40px',
-              md: '52px',
+              xs: '20px',
+              sm: '30px',
+              md: '42px',
             },
           }}
-          variant="h2"
-          fontWeight="500"
-          fontFamily="Ubuntu"
+          variant="h1"
+          fontWeight="700"
+          fontFamily="Arial"
           color="#1976d2"
-          maxWidth="480px"
-          marginLeft="auto"
-          marginRight="auto"
-          marginTop="40px"
+          maxWidth="600px"
+          margin="auto"
+          marginTop="20px"
         >
-          All your <br />
-          phonebook <br /> contacts in
+          {getTimeOfDay()}
         </Typography>
         <Typography
           sx={{
@@ -84,32 +103,32 @@ const Home = () => {
               md: 6,
             },
             fontSize: {
-              xs: '34px',
-              sm: '44px',
-              md: '56px',
+              xs: '20px',
+              sm: '30px',
+              md: '42px',
             },
           }}
           variant="h1"
           fontWeight="700"
-          fontFamily="Ubuntu"
+          fontFamily="Arial"
           color="#ffffff"
           maxWidth="480px"
           marginLeft="auto"
           marginRight="auto"
         >
-          PhoneApp
+          PhoneBook
         </Typography>
         <Button
           type="button"
           variant="contained"
           aria-label="Start"
           size="large"
-          color="primary"
+          color="secondary"
           marginLeft="24px"
           endIcon={<LoginIcon />}
           onClick={handleStart}
         >
-          Get started
+          Go to Login
         </Button>
       </MainBox>
     </ThemeProvider>

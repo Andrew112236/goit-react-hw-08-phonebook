@@ -14,7 +14,7 @@ export const Navigation = () => {
           variant="contained"
           aria-label="Start"
           size="large"
-          color="primary"
+          color="secondary"
         >
           Home
         </Button>

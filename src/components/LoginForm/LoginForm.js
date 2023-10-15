@@ -1,7 +1,6 @@
 // Import Files from NPM plugins---------------------------------------------------------------------------------
 
 import React from 'react';
-import { Notify } from 'notiflix';
 
 // Import Files from components-----------------------------------------------------------------------------------
 
@@ -32,7 +31,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const defaultTheme = createTheme();
 
-export function LoginForm() {
+function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const authOperation = useSelector(selectIsAuthLoading);
@@ -46,15 +45,14 @@ export function LoginForm() {
           email: form.elements.email.value,
           password: form.elements.password.value,
         })
-      )
-        .unwrap()
-        .then(() => {
-          form.reset();
-          Notify.success(`Welcome, ${form.elements.email.value}!`);
-          navigate('/');
-        });
+      ).unwrap();
+      form.reset();
+      navigate('/');
     } catch (error) {
-      Notify.failure('Login failed. Please enter the correct password!');
+      form.elements.password.setCustomValidity(
+        'Login failed. Please enter the correct password!'
+      );
+      form.reportValidity();
     }
   };
 
@@ -73,11 +71,9 @@ export function LoginForm() {
           <Avatar sx={{ m: 1, variant: 'circular' }}>
             <BlockIcon />
           </Avatar>
-          <Typography
-            component="h1"
-            variant="h4"
-            fontFamily="Arial"
-          ></Typography>
+          <Typography component="h1" variant="h4" sx={{ fontFamily: 'Arial' }}>
+            Login
+          </Typography>
           <Box
             component="form"
             autoComplete="off"
@@ -141,3 +137,5 @@ export function LoginForm() {
     </ThemeProvider>
   );
 }
+
+export default LoginForm;

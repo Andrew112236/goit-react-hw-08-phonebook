@@ -41,6 +41,9 @@ const themeStyles = createTheme({
     primary: {
       main: '#34a8eb',
     },
+    secondary: {
+      main: '#0408d9',
+    },
   },
   breakpoints: {
     values: {
