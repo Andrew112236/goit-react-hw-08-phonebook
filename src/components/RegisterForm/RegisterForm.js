@@ -74,7 +74,7 @@ function RegisterForm() {
           onSubmit={handleSubmit}
           sx={{ mt: 2 }}
         >
-          <Grid container spacing={6}>
+          <Grid container spacing={3}>
             <Grid item xs={20}>
               <TextField
                 name="name"

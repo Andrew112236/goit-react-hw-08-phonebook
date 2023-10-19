@@ -23,13 +23,38 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 // Function LoginForm------------------------------------------------------------------------------------------
 
-const defaultTheme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#0408d9',
+    },
+  },
+  typography: {
+    button: {
+      fontFamily: 'Arial',
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 300,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+});
+
+const defaultTheme = theme;
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -77,17 +102,7 @@ function LoginForm() {
             onSubmit={handleSubmit}
             sx={{ mt: 2 }}
           >
-            <Grid container spacing={6}>
-              <Grid item xs={20}>
-                <TextField
-                  name="name"
-                  required
-                  fullWidth
-                  id="name"
-                  label="Name"
-                  autoComplete="email"
-                />
-              </Grid>
+            <Grid container spacing={3}>
               <Grid item xs={14}>
                 <TextField
                   required
